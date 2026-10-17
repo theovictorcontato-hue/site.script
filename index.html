@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theo Scripts Hub</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080811;color:white;font-family:Arial,sans-serif;padding:25px 14px}
+.container{max-width:850px;margin:auto}
+header{text-align:center;padding:20px 0}
+h1{color:#bd75ff;text-shadow:0 0 18px #862bff;font-size:34px}
+header p{color:#aaa}
+.card{background:#12121f;border:1px solid #6436a5;border-radius:13px;padding:18px;margin:16px 0;box-shadow:0 0 15px #7025a522}
+h2{font-size:18px;color:#69e7ff;margin-top:0}
+textarea{width:100%;height:85px;resize:vertical;background:#080811;color:#d7c4ff;border:1px solid #39304e;border-radius:8px;padding:12px;font:13px Consolas,monospace}
+button{padding:12px 15px;border:0;border-radius:8px;background:linear-gradient(100deg,#852dff,#087cff);color:white;font-weight:bold;cursor:pointer;margin-top:10px}
+button:hover{filter:brightness(1.2)}
+.top{width:100%;font-size:16px;padding:16px;background:linear-gradient(90deg,#852dff,#087cff,#00d5ff)}
+#status{text-align:center;color:#69ffba;min-height:20px}
+footer{text-align:center;color:#777;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>⚡ THEO SCRIPTS HUB</h1>
+<p>RGB Edition • Sua coleção pessoal</p>
+</header>
+
+<div id="scripts"></div>
+
+<button class="top" onclick="copyAll()">📋 COPIAR TODOS OS SCRIPTS</button>
+<p id="status" role="status"></p>
+<footer>THEO SCRIPTS HUB • 9 SCRIPTS</footer>
+</div>
+
+<script>
+const scripts = [
+{
+name:"🎯 MM2",
+code:'loadstring(game:HttpGet("https://pastefy.app/UhF94MA9/raw"))() -- mm2'
+},
+{
+name:"🍎 Blox Fruits 1",
+code:'loadstring(game:HttpGet("https://pastefy.app/uZUuCtz0/raw"))()'
+},
+{
+name:"🍎 Blox Fruits 2",
+code:'loadstring(game:HttpGet("https://pastefy.app/tHKODGlf/raw"))()'
+},
+{
+name:"⚡ Power X Loadstring Arsenal",
+code:'loadstring(game:HttpGet("https://pastefy.app/8nXBwZrF/raw"))()'
+},
+{
+name:"🔥 Script 5",
+code:'loadstring(game:HttpGet("https://pastefy.app/9vPMoYOG/raw"))()'
+},
+{
+name:"🚀 Fling NASA",
+code:'loadstring(game:HttpGet("https://raw.githubusercontent.com/theovictorcontato-hue/script-fling-nasa/refs/heads/main/Fling.nasa"))()'
+},
+{
+name:"💜 Script 7",
+code:'loadstring(game:HttpGet("https://pastefy.app/CvG9xlnW/raw"))()'
+},
+{
+name:"🔴 Redz Hub",
+code:'loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Redz-hub-205954"))()'
+},
+{
+name:"🏐 Script Vôlei",
+code:'loadstring(game:HttpGet("https://raw.githubusercontent.com/theovictorcontato-hue/script-new-volei/refs/heads/main/README.md"))()'
+}
+];
+
+const root = document.getElementById("scripts");
+
+scripts.forEach((script,i)=>{
+const card = document.createElement("section");
+card.className = "card";
+
+const title = document.createElement("h2");
+title.textContent = script.name;
+
+const area = document.createElement("textarea");
+area.id = "script" + i;
+area.spellcheck = false;
+area.value = script.code;
+
+const button = document.createElement("button");
+button.textContent = "📋 Copiar script";
+button.addEventListener("click",()=>copyText(script.code));
+
+card.append(title,area,button);
+root.appendChild(card);
+});
+
+async function copyText(text){
+try{
+await navigator.clipboard.writeText(text);
+document.getElementById("status").textContent = "✅ Copiado!";
+}catch(e){
+document.getElementById("status").textContent =
+"Selecione o código e copie com Ctrl+C.";
+}
+}
+
+async function copyAll(){
+await copyText(scripts.map(s=>s.code).join("\n\n"));
+}
+</script>
+</body>
+</html>
